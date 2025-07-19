@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.XinnengyuanqicheDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.entity.XinnengyuanqicheEntity" id="xinnengyuanqicheMap">
+        <result property="qichemingcheng" column="qichemingcheng"/>
+        <result property="tupian" column="tupian"/>
+        <result property="qichefenlei" column="qichefenlei"/>
+        <result property="guige" column="guige"/>
+        <result property="tedian" column="tedian"/>
+        <result property="qichecanshu" column="qichecanshu"/>
+        <result property="onelimittimes" column="onelimittimes"/>
+        <result property="alllimittimes" column="alllimittimes"/>
+        <result property="thumbsupnum" column="thumbsupnum"/>
+        <result property="crazilynum" column="crazilynum"/>
+        <result property="clicktime" column="clicktime"/>
+        <result property="clicknum" column="clicknum"/>
+        <result property="discussnum" column="discussnum"/>
+        <result property="totalscore" column="totalscore"/>
+        <result property="price" column="price"/>
+        <result property="onshelves" column="onshelves"/>
+        <result property="storeupnum" column="storeupnum"/>
+    </resultMap>
+
+	<select id="selectListVO"
+		resultType="com.entity.vo.XinnengyuanqicheVO" >
+		SELECT * FROM xinnengyuanqiche  xinnengyuanqiche         
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectVO"
+		resultType="com.entity.vo.XinnengyuanqicheVO" >
+		SELECT  xinnengyuanqiche.* FROM xinnengyuanqiche  xinnengyuanqiche 	
+ 		<where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+    <select id="selectListView"
+		resultType="com.entity.view.XinnengyuanqicheView" >
+
+		SELECT  xinnengyuanqiche.* FROM xinnengyuanqiche  xinnengyuanqiche 	        
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectView"
+		resultType="com.entity.view.XinnengyuanqicheView" >
+		SELECT * FROM xinnengyuanqiche  xinnengyuanqiche <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+
+    <select id="selectValue" resultType="map" >
+        SELECT ${params.xColumn}, ROUND(sum(${params.yColumn}),1) total FROM xinnengyuanqiche
+        <where> 1=1 ${ew.sqlSegment}</where>
+        group by ${params.xColumn}
+    </select>
+
+    <select id="selectTimeStatValue" resultType="map" >
+        <if test = 'params.timeStatType == "日"'>
+                SELECT DATE_FORMAT(${params.xColumn},'%Y-%m-%d') ${params.xColumn}, sum(${params.yColumn}) total FROM xinnengyuanqiche
+                <where> 1=1 ${ew.sqlSegment}</where>
+                group by DATE_FORMAT(${params.xColumn},'%Y-%m-%d')
+        </if>
+        <if test='params.timeStatType == "周"'>
+                -- 1、按年和周数值分组
+                -- 2、先按年降序，再按周降序
+                SELECT CONCAT(YEAR(${params.xColumn}), '年 第', WEEK(${params.xColumn}, 1), '周') AS ${params.xColumn}, SUM(${params.yColumn}) total FROM xinnengyuanqiche
+                <where> 1=1 ${ew.sqlSegment}</where>
+                GROUP BY YEAR(${params.xColumn}), WEEK(${params.xColumn}, 1)
+                ORDER BY YEAR(${params.xColumn}) DESC, WEEK(${params.xColumn}, 1) DESC
+        </if>
+        <if test = 'params.timeStatType == "月"'>
+                SELECT DATE_FORMAT(${params.xColumn},'%Y-%m') ${params.xColumn}, sum(${params.yColumn}) total FROM xinnengyuanqiche
+                <where> 1=1 ${ew.sqlSegment}</where>
+                group by DATE_FORMAT(${params.xColumn},'%Y-%m')
+        </if>
+        <if test='params.timeStatType == "季"'>
+                SELECT CONCAT(YEAR(${params.xColumn}), ' - ', ELT(QUARTER(${params.xColumn}), '第一季度', '第二季度', '第三季度', '第四季度')) as ${params.xColumn}, sum(${params.yColumn}) total FROM orders
+                <where> 1=1 ${ew.sqlSegment}</where>
+                group by CONCAT(YEAR(${params.xColumn}), ' - ', ELT(QUARTER(${params.xColumn}), '第一季度', '第二季度', '第三季度', '第四季度'))
+        </if>
+        <if test = 'params.timeStatType == "年"'>
+                SELECT DATE_FORMAT(${params.xColumn},'%Y') ${params.xColumn}, sum(${params.yColumn}) total FROM xinnengyuanqiche
+                <where> 1=1 ${ew.sqlSegment}</where>
+                group by DATE_FORMAT(${params.xColumn},'%Y')
+        </if>
+    </select>
+
+    <select id="selectGroup" resultType="map" >
+        SELECT ${params.column} , count(1) total FROM xinnengyuanqiche
+        <where> 1=1 ${ew.sqlSegment}</where>
+        group by ${params.column}
+    </select>
+
+
+
+
+</mapper>
