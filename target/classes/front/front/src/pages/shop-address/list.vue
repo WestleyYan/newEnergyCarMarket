@@ -41,7 +41,7 @@
 					<el-button
 						size="mini"
 						type="danger"
-						@click="handleDelete(scope.$index, scope.row)">DELATE</el-button>
+						@click="handleDelete(scope.$index, scope.row)">DELETE</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -114,7 +114,7 @@
 				this.$router.push({path: '/index/shop-address/addOrUpdate', query: {id: row.id, editObj: JSON.stringify(row)}})
 			},
 			handleDelete(index, row) {
-				this.$confirm('是否确认DELATE?', '提示', {
+				this.$confirm('是否确认DELETE?', '提示', {
 					confirmButtonText: '确定',
 					cancelButtonText: '取消',
 					type: 'warning'
@@ -125,7 +125,7 @@
 						if (res.data.code == 0) {
 							this.$message({
 								type: 'success',
-								message: 'DELATE成功!',
+								message: 'DELETE成功!',
 								duration: 1500,
 								onClose: () => {
 									this.getAddr(1);

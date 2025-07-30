@@ -25,9 +25,9 @@
 						<span class="icon iconfont icon-tianjia1" :style='{"margin":"0 2px","fontSize":"14px","color":"#fff","borderRadius":"5px","height":"34px"}'></span>
 						ADD
 					</el-button>
-					<el-button class="del" v-if="isAuth('yonghu','DELATE')" :disabled="dataListSelections.length?false:true" type="danger" @click="deleteHandler()">
+					<el-button class="del" v-if="isAuth('yonghu','DELETE')" :disabled="dataListSelections.length?false:true" type="danger" @click="deleteHandler()">
 						<span class="icon iconfont icon-shanchu6" :style='{"margin":"0 2px","fontSize":"14px","color":"#6EADEF","height":"34px"}'></span>
-						DELATE
+						DELETE
 					</el-button>
 
 
@@ -96,9 +96,9 @@
 
 
 
-							<el-button class="del" v-if="isAuth('yonghu','DELATE') " type="primary" @click="deleteHandler(scope.row.id )">
+							<el-button class="del" v-if="isAuth('yonghu','DELETE') " type="primary" @click="deleteHandler(scope.row.id )">
 								<span class="icon iconfont icon-xihuan" :style='{"margin":"0 2px","fontSize":"14px","color":"#fff","display":"none","height":"40px"}'></span>
-								DELATE
+								DELETE
 							</el-button>
 						</template>
 					</el-table-column>
@@ -276,12 +276,12 @@
 					this.$refs.addOrUpdate.init(id,type);
 				});
 			},
-			// DELATE
+			// DELETE
 			async deleteHandler(id ) {
 				var ids = id? [Number(id)]: this.dataListSelections.map(item => {
 					return Number(item.id);
 				});
-				await this.$confirm(`确定进行[${id ? "DELATE" : "批量DELATE"}]Actions?`, "提示", {
+				await this.$confirm(`确定进行[${id ? "DELETE" : "批量DELETE"}]Actions?`, "提示", {
 					confirmButtonText: "确定",
 					cancelButtonText: "取消",
 					type: "warning"

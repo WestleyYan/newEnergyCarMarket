@@ -224,12 +224,12 @@
 			disscussListHandler(id,type) {
 				this.$router.push({path:'/discussconfig',query:{refid:id}});
 			},
-			// DELATE
+			// DELETE
 			async deleteHandler(id ) {
 				var ids = id? [Number(id)]: this.dataListSelections.map(item => {
 					return Number(item.id);
 				});
-				await this.$confirm(`确定进行[${id ? "DELATE" : "批量DELATE"}]Actions?`, "提示", {
+				await this.$confirm(`确定进行[${id ? "DELETE" : "批量DELETE"}]Actions?`, "提示", {
 					confirmButtonText: "确定",
 					cancelButtonText: "取消",
 					type: "warning"

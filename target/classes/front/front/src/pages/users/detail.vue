@@ -31,7 +31,7 @@
 					</div>
 					<div class="btn_box">
 						<el-button class="editBtn" v-if="btnAuth('users','UPDATE')" @click="editClick">UPDATE</el-button>
-						<el-button class="delBtn" v-if="btnAuth('users','DELATE')" @click="delClick">DELATE</el-button>
+						<el-button class="delBtn" v-if="btnAuth('users','DELETE')" @click="delClick">DELETE</el-button>
 					</div>
 				</div>
 			</div>
@@ -253,14 +253,14 @@
 			editClick(){
 				this.$router.push(`/index/usersAdd?type=edit&&id=${this.detail.id}`);
 			},
-			// DELATE
+			// DELETE
 			async delClick(){
-				await this.$confirm('是否DELATE此管理员？') .then(_ => {
+				await this.$confirm('是否DELETE此管理员？') .then(_ => {
 					this.$http.post('users/delete', [this.detail.id]).then(async res => {
 						if (res.data.code == 0) {
 							this.$message({
 								type: 'success',
-								message: 'DELATE成功!',
+								message: 'DELETE成功!',
 								duration: 1500,
 								onClose: () => {
 									history.back()

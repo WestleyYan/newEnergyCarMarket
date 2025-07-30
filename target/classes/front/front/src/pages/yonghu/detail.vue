@@ -39,7 +39,7 @@
 					</div>
 					<div class="btn_box">
 						<el-button class="editBtn" v-if="btnAuth('yonghu','UPDATE')" @click="editClick">UPDATE</el-button>
-						<el-button class="delBtn" v-if="btnAuth('yonghu','DELATE')" @click="delClick">DELATE</el-button>
+						<el-button class="delBtn" v-if="btnAuth('yonghu','DELETE')" @click="delClick">DELETE</el-button>
 					</div>
 				</div>
 			</div>
@@ -264,14 +264,14 @@
 			editClick(){
 				this.$router.push(`/index/yonghuAdd?type=edit&&id=${this.detail.id}`);
 			},
-			// DELATE
+			// DELETE
 			async delClick(){
-				await this.$confirm('是否DELATE此User？') .then(_ => {
+				await this.$confirm('是否DELETE此User？') .then(_ => {
 					this.$http.post('yonghu/delete', [this.detail.id]).then(async res => {
 						if (res.data.code == 0) {
 							this.$message({
 								type: 'success',
-								message: 'DELATE成功!',
+								message: 'DELETE成功!',
 								duration: 1500,
 								onClose: () => {
 									history.back()

@@ -31,7 +31,7 @@
 					</div>
 					<div class="btn_box">
 						<el-button class="editBtn" v-if="btnAuth('config','UPDATE')" @click="editClick">UPDATE</el-button>
-						<el-button class="delBtn" v-if="btnAuth('config','DELATE')" @click="delClick">DELATE</el-button>
+						<el-button class="delBtn" v-if="btnAuth('config','DELETE')" @click="delClick">DELETE</el-button>
 					</div>
 				</div>
 			</div>
@@ -253,14 +253,14 @@
 			editClick(){
 				this.$router.push(`/index/configAdd?type=edit&&id=${this.detail.id}`);
 			},
-			// DELATE
+			// DELETE
 			async delClick(){
-				await this.$confirm('是否DELATE此轮播图管理？') .then(_ => {
+				await this.$confirm('是否DELETE此轮播图管理？') .then(_ => {
 					this.$http.post('config/delete', [this.detail.id]).then(async res => {
 						if (res.data.code == 0) {
 							this.$message({
 								type: 'success',
-								message: 'DELATE成功!',
+								message: 'DELETE成功!',
 								duration: 1500,
 								onClose: () => {
 									history.back()
