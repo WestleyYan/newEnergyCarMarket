@@ -164,7 +164,7 @@ public class UsersController{
     }
 
     /**
-     * DELATE
+     * DELETE
      */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){

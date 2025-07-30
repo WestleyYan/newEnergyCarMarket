@@ -196,7 +196,7 @@ public class DiscussxinnengyuanqicheController {
     
 
     /**
-     * DELATE
+     * DELETE
      */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){

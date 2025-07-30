@@ -198,7 +198,7 @@ public class QichefenleiController {
     
 
     /**
-     * DELATE
+     * DELETE
      */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){

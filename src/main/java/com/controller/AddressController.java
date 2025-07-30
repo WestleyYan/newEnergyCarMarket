@@ -225,7 +225,7 @@ public class AddressController {
     }
 
     /**
-     * DELATE
+     * DELETE
      */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){

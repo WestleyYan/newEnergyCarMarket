@@ -1,7 +1,7 @@
 <template>
 	<div :style='{"padding":"0 calc((100% - 1200px)/2) 20px","margin":"0px auto","color":"#666","background":"#fff","width":"100%","fontSize":"16px","position":"relative"}'>
 		<div class="section-title" :style='{"padding":"0","margin":"20px 0 0","color":"#fff","textAlign":"center","background":"url(http://codegen.caihongy.cn/20241228/f151b89f53c94b7fa5ae510c2f7bd563.png) no-repeat center bottom","width":"100%","fontSize":"32px","lineHeight":"100px","position":"relative","height":"191px"}'>购物车</div>
-		<el-button size="small" type="danger" @click="delAllClick" :disabled="selRows.length?false:true">DELATE</el-button>
+		<el-button size="small" type="danger" @click="delAllClick" :disabled="selRows.length?false:true">DELETE</el-button>
 		<el-table @selection-change="handleSelectionChange" :data="tableData" style="width: 100%">
 			<el-table-column type="selection" width="50" align="center" />
 			<el-table-column label="Product Name">
@@ -31,7 +31,7 @@
 			<el-table-column label="Actions" width="150">
 				<template slot-scope="scope">
 					<el-button size="mini" type="danger"
-						@click="handleDelete(scope.$index, scope.row)">DELATE</el-button>
+						@click="handleDelete(scope.$index, scope.row)">DELETE</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -85,7 +85,7 @@
 				});
 			},
 			handleDelete(index, row) {
-				this.$confirm('是否确认DELATE?', '提示', {
+				this.$confirm('是否确认DELETE?', '提示', {
 					confirmButtonText: '确定',
 					cancelButtonText: '取消',
 					type: 'warning'
@@ -96,7 +96,7 @@
 						if (res.data.code == 0) {
 							this.$message({
 								type: 'success',
-								message: 'DELATE成功!',
+								message: 'DELETE成功!',
 								duration: 1500,
 								onClose: () => {
 									this.getCartList();
@@ -107,7 +107,7 @@
 				});
 			},
 			delAllClick(){
-				this.$confirm('是否确认选中ProductDELATE?', '提示', {
+				this.$confirm('是否确认选中ProductDELETE?', '提示', {
 					confirmButtonText: '确定',
 					cancelButtonText: '取消',
 					type: 'warning'
@@ -120,7 +120,7 @@
 						if (res.data.code == 0) {
 							this.$message({
 								type: 'success',
-								message: 'DELATE成功!',
+								message: 'DELETE成功!',
 								duration: 1500,
 								onClose: () => {
 									this.getCartList();

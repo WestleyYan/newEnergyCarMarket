@@ -74,7 +74,7 @@
 					</div>
 					<div class="btn_box">
 						<el-button class="editBtn" v-if="btnAuth('xinnengyuanqiche','UPDATE')" @click="editClick">UPDATE</el-button>
-						<el-button class="delBtn" v-if="btnAuth('xinnengyuanqiche','DELATE')" @click="delClick">DELATE</el-button>
+						<el-button class="delBtn" v-if="btnAuth('xinnengyuanqiche','DELETE')" @click="delClick">DELETE</el-button>
 					</div>
 				</div>
 			</div>
@@ -226,7 +226,7 @@
 								</div>
 								<div class="comment-btn">
 									<!-- <el-button :style='{"border":"0","cursor":"pointer","padding":"0 20px","margin":"0 10px","color":"#fff","borderRadius":"0px","background":"#3397d9","width":"auto","lineHeight":"32px","fontSize":"14px","minWidth":"90px","height":"32px"}'>回复</el-button> -->
-									<el-button class="delBtn" v-if="showIndex==item.id&&userid==item.userid" @click="discussDel(item.id)">DELATE</el-button>
+									<el-button class="delBtn" v-if="showIndex==item.id&&userid==item.userid" @click="discussDel(item.id)">DELETE</el-button>
 								</div>
 							</div>
 							<div class="comment-content-box" v-if="item.reply">
@@ -670,13 +670,13 @@
 				this.showIndex = -1
 			},
 			discussDel(id){
-				this.$confirm('是否DELATE此评论？').then(_ => {
+				this.$confirm('是否DELETE此评论？').then(_ => {
 					this.$http.post('discussxinnengyuanqiche/delete',[id]).then(res=>{
 						if(res.data&&res.data.code==0){
 							this.addDiscussNum(1)
 							this.$message({
 								type: 'success',
-								message: 'DELATE成功!',
+								message: 'DELETE成功!',
 								duration: 1500,
 								onClose: () => {
 									this.getDiscussList(1);
@@ -862,9 +862,9 @@
 			editClick(){
 				this.$router.push(`/index/xinnengyuanqicheAdd?type=edit&&id=${this.detail.id}`);
 			},
-			// DELATE
+			// DELETE
 			async delClick(){
-				await this.$confirm('是否DELATE此New Energy Vehicles？') .then(_ => {
+				await this.$confirm('是否DELETE此New Energy Vehicles？') .then(_ => {
 					this.$http.post('xinnengyuanqiche/delete', [this.detail.id]).then(async res => {
 						if (res.data.code == 0) {
 							this.$http.get('storeup/list',{params:{
@@ -883,7 +883,7 @@
 									}
 									this.$message({
 										type: 'success',
-										message: 'DELATE成功!',
+										message: 'DELETE成功!',
 										duration: 1500,
 										onClose: () => {
 											history.back()

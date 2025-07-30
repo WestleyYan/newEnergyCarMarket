@@ -254,7 +254,7 @@ export default {
 							role: this.userTableName,
 						}
 						this.$http.post('orders/add', order).then( res => {
-							// DELATE购物车数据(如果是购物车下单)
+							// DELETE购物车数据(如果是购物车下单)
 							if (item.id) {
 								this.$http.post('cart/delete', [item.id]).then(res => {});
 							}

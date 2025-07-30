@@ -11,7 +11,7 @@
 <script>
 	// 工具栏配置
 	const toolbarOptions = [
-		["bold", "italic", "underline", "strike"], // 加粗 斜体 下划线 DELATE线
+		["bold", "italic", "underline", "strike"], // 加粗 斜体 下划线 DELETE线
 		["blockquote", "code-block"], // 引用  代码块
 		[{
 			header: 1
